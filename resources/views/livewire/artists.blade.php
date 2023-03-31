@@ -17,31 +17,21 @@
                 @if ($isOpen)
                     @include('livewire.create')
                 @endif
-                <table class="table-fixed w-full">
-                    <thead>
-                        <tr class="bg-gray-100">
-                            <th class="px-4 py-2 w-20">No.</th>
-                            <th class="px-4 py-2">Name</th>
-                            <th class="px-4 py-2">Genre</th>
-                            <th class="px-4 py-2">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($artists as $artist)
-                            <tr>
-                                <td class="border px-4 py-2">{{ $artist->id }}</td>
-                                <td class="border px-4 py-2">{{ $artist->name }}</td>
-                                <td class="border px-4 py-2">{{ $artist->genre }}</td>
-                                <td class="border px-4 py-2">
-                                    <button wire:click="edit({{ $artist->id }})"
-                                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Edit</button>
-                                    <button wire:click="delete({{ $artist->id }})"
-                                        class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Delete</button>
-                                </td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                <div class="artists p-3 flex flex-row">
+                    @foreach ($artists as $artist)
+                        <div class="artist mx-8 border p-3 w-72 bg-slate-50" wire:key="artist{{ $artist->id }}">
+                            <h3 class="text-xl text-red-800 font-bold inline">{{ $artist->name }}</h3>
+                            <button wire:click="edit({{ $artist->id }})"
+                                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-1 rounded ml-3">Edit</button>
+                            <button wire:click="delete({{ $artist->id }})"
+                                class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-1 rounded ml-3">Del</button>
+                            <p>Genre: {{ $artist->genre }}</p>
+                            <div class="releases">
+                                @livewire('releases', ['artist' => $artist], key($artist->id))
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
             </div>
         </div>
     </div>

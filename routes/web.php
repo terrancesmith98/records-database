@@ -1,9 +1,9 @@
 <?php
 
 use App\Http\Livewire\Artists;
+use App\Http\Livewire\Releases;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ArtistController;
-use App\Http\Controllers\ReleaseController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -28,7 +28,6 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
-    Route::get('artist', Artists::class);
-    // Route::resource('artists', ArtistController::class);
-    // Route::resource('releases', ReleaseController::class);
+    Route::get('artists', Artists::class);
+    Route::get('releases', Releases::class);
 });

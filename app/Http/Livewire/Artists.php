@@ -8,7 +8,7 @@ use Livewire\Component;
 class Artists extends Component
 {
 
-    public $artists, $name, $genre, $artist_id;
+    public $releases, $artists, $name, $genre, $artist_id;
     public $isOpen = 0;
 
     public function render()
@@ -38,6 +38,12 @@ class Artists extends Component
         $this->name = '';
         $this->genre = '';
     }
+
+    // public function releases($id)
+    // {
+    //     $releases = Artist::find($id)->releases();
+    //     redirect()->route('releases', $releases);
+    // }
 
     public function store()
     {
